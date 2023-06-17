@@ -1,0 +1,13 @@
+# Python packages
+time
+os
+
+# Selenium package
+selenium
+
+# Pillow package
+Pillow
+
+# Keras package
+keras
+numpy
