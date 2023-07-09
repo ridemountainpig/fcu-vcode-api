@@ -11,6 +11,7 @@ def validateCode(image_path):
 
     part_width = (width - 12) // 4
 
+    validateCodeResult = ""
     for i in range(4):
         left = i * part_width + 6
         upper = 0
@@ -61,8 +62,10 @@ def validateCode(image_path):
         confidence_score = prediction[0][index]
 
         # Print prediction and confidence score
-        print("Class:", class_name[2:], end="")
-        print("Confidence Score:", confidence_score)
+        # print("Class:", class_name[2:], end="")
+        # print("Confidence Score:", confidence_score)
+        validateCodeResult += class_name[2]
+    return validateCodeResult
 
 
 def validateCodeLite(image_path):
@@ -85,6 +88,7 @@ def validateCodeLite(image_path):
 
     part_width = (width - 12) // 4
 
+    validateCodeResult = ""
     for i in range(4):
         left = i * part_width + 6
         upper = 0
@@ -114,5 +118,7 @@ def validateCodeLite(image_path):
         confidence_score = output_data[0][predicted_index]
 
         # Print prediction and confidence score
-        print("Class:", class_name[2:], end="")
-        print("Confidence Score:", confidence_score)
+        # print("Class:", class_name[2:], end="")
+        # print("Confidence Score:", confidence_score)
+        validateCodeResult += class_name[2]
+    return validateCodeResult
