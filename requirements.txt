@@ -10,3 +10,8 @@ numpy
 
 # TensorFlow package
 tensorflow
+
+# FastAPI package
+fastapi
+uvicorn[standard]
+python-multipart
