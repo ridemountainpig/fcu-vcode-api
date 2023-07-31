@@ -2,8 +2,11 @@ from typing import Union
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles 
+import uvicorn
 import os
 from script import validateCode as vc
+from script import validateImg as vi
 
 app = FastAPI()
 
@@ -44,6 +47,14 @@ async def validate_image(file: UploadFile = File(...)):
     return JSONResponse({"vcode": result})
 
 
+@app.get("/validateImg")
+async def get_validate_image():
+    fileName = vi.downLoadImage("https://course.fcu.edu.tw/validateCode.aspx")
+    vcodeNum = vc.validateCodeLite(f"images/{fileName}")
+    return JSONResponse({"fileName": fileName, "vcode": vcodeNum})
+
+app.mount("/images", app=StaticFiles(directory="images"), name="images")
+
 # @app.post("/upload")
 # async def upload_image(file: UploadFile = File(...)):
 #     if not os.path.exists("images"):
@@ -57,3 +68,6 @@ async def validate_image(file: UploadFile = File(...)):
 #         f.write(file.file.read())
 
 #     return JSONResponse({"message": "File uploaded successfully"})
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
