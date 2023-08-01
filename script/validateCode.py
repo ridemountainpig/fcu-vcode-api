@@ -70,7 +70,7 @@ def validateCode(image_path):
 
 def validateCodeLite(image_path):
     # Load the TFLite model
-    interpreter = tf.lite.Interpreter(model_path="model/keras_model.tflite")
+    interpreter = tf.lite.Interpreter(model_path="model/model_unquant.tflite")
     interpreter.allocate_tensors()
 
     # Get input and output details
