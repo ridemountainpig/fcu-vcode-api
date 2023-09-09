@@ -9,7 +9,7 @@ keras
 numpy
 
 # TensorFlow package
-tensorflow
+tensorflow-cpu
 
 # FastAPI package
 fastapi
